@@ -1,0 +1,15 @@
+// Place all the styles related to the check_burn controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.check_burn{
+  #question_tweets{
+    .hidden {
+      display: none;
+    }
+    table {
+      .check-button {
+        width: 15%;
+      }
+    }
+  }
+}

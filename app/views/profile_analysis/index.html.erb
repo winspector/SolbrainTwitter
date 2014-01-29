@@ -1,0 +1,29 @@
+<table class="table">
+  <thead>
+    <th>項目</th>
+    <th>設定値</th>
+  </thead>
+  <tbody>
+  <tr>
+    <th>アカウント</th>
+    <td><%= @profile.screen_name %></td>
+  </tr>
+  <tr>
+    <th>名前</th>
+    <td><%= @profile.name %></td>
+  </tr>
+  <tr>
+    <th>アイコン画像</th>
+    <td><%= image_tag @profile.profile_image_url %></td>
+  </tr>
+  <tr>
+    <th>ロケーション</th>
+    <td><%= @profile.location %></td>
+  </tr>
+  <tr>
+    <th>紹介文</th>
+    <td><%= @profile.description %></td>
+  </tr>
+
+  </tbody>
+</table>

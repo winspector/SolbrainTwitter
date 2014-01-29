@@ -1,0 +1,15 @@
+<tr id="tweet-tr-<%= tweets.id%>">
+  <td class="tweet-form">
+    <%= tweets.text %>
+    <%= form_tag(check_burn_judge_path, remote:true, method: 'post') do %>
+        <%= hidden_field 'check', 'id', {value:tweets.id} %>
+        <%= hidden_field 'check', 'answer', {value:false} %>
+    <% end %>
+  </td>
+  <td class="check-button">
+    <%= button_tag '問題なし', {class:'btn btn-primary no-problem'} %>
+  </td>
+  <td class="check-button">
+    <%= button_tag '燃えるかも', {class:'btn btn-primary may-burn'} %>
+  </td>
+</tr>

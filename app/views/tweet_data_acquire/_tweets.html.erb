@@ -1,0 +1,14 @@
+<tr id="tweet-<%= tweets[:id ]%>">
+  <td><%= image_tag tweets[:user][:profile_image_url] , {class:'account-icon'}%></td>
+  <td><%= link_to '@' + tweets[:user][:screen_name], 'https://twitter.com/' + tweets[:user][:screen_name] %></td>
+  <td>
+    <%= tweets[:text] %><%= link_to '  …', 'https://twitter.com/' + tweets[:user][:screen_name] + '/status/' + tweets[:id_str] + '/' %>
+  </td>
+  <td>
+    <%= form_tag(tweet_data_acquire_add_target_path, method: 'post') do%>
+        <%= hidden_field('origin', 'account_uid',{value:tweets[:user][:id]}) %>
+        <%= hidden_field('origin', 'screen_name',{value:tweets[:user][:screen_name]}) %>
+        <%= submit_tag '起点ユーザにして収集', {class:'btn btn-primary'} %>
+    <% end %>
+  </td>
+</tr>

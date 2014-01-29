@@ -1,0 +1,6 @@
+<h1>フォロワー分析</h1>
+<% if @my_followers %>
+    <%= render :partial => 'follow_analysis/follower_list', :locals => {my_followers:@my_followers} %>
+<% else %>
+    フォロワーデータがありません
+<% end %>

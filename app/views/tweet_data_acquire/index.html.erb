@@ -1,0 +1,20 @@
+<h2>テスト用ツィートデータ収集</h2>
+<h3>検索フォーム</h3>
+<%= form_tag(tweet_data_acquire_search_path, method: 'post') do%>
+    <div class="input-form"><label class="display-inline">この全てのキーワードを含む</label><%= text_field('search', :and_word) %></div>
+    <div class="clear-right"></div>
+    <div class="input-form"><label class="display-inline">このいずれかのキーワードを含む</label><%= text_field('search', 'or_word') %></div>
+    <div class="clear-right"></div>
+    <div class="input-form"><label class="display-inline">リツィート件数</label><%= text_field('search', 'retweet', {value:'0'}) %></div>
+    <div class="clear-right"></div>
+    <div class="input-form"><label class="display-inline">ツィート期間</label>いまはまだない</div>
+    <div class="clear-right"></div>
+    <div class="input-form"><%= check_box 'search', 'exclude_already_acquire', {class:'clear-right'} %>既に芋づる収集済のものは出さない</div>
+    <div class="clear-right"></div>
+    <div class="input-form"><%= check_box 'search', 'exclude_already_check', {class:'clear-right'}%>既にチェック済のものは出さない</div>
+    <div class="clear-right"></div>
+    <div class="submit-form"><%= button_tag 'この条件で起点ツィートを検索する', {class:'btn btn-primary'}%></div>
+<% end %>
+
+<h3>検索結果</h3>
+<%= render :partial => 'search_result', locals: {tweets:@tweets} %>

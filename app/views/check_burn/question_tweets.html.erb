@@ -1,0 +1,17 @@
+<h2>ひたすら火種判定する</h2>
+<div class="menu-description">
+  <p>表示されるツィートに対してひたすら火種になりそうかどうか判定してください</p>
+</div>
+<div id="question_tweets">
+  <%= button_to 'さらに取得', check_burn_question_tweets_path, {method:'get', class:'btn btn-primary more_question'} %>
+  <table class="table" id="question-table">
+    <thead>
+      <th>テキスト</th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+        <%= render :partial => 'tweets', :collection => @tweets %>
+    </tbody>
+  </table>
+</div>

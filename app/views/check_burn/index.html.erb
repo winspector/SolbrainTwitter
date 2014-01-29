@@ -1,0 +1,17 @@
+<h2>炎上テキスト判定の部屋</h2>
+<h3>統計情報</h3>
+<table class="table">
+  <thead>
+    <th>項目</th>
+    <th>値</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tweet件数</td>
+      <td><%= @all_tweet_count %></td>
+    </tr>
+  </tbody>
+</table>
+<ul>
+  <li><%= link_to 'ひたすら火種判定する', check_burn_question_tweets_path %></li>
+</ul>

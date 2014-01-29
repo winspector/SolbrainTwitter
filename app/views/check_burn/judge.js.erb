@@ -1,0 +1,6 @@
+var target_tr = '#tweet-tr-' + <%= @tweet_id.to_s %>;
+$(target_tr).remove();
+var row_count = $("#question-table tbody").children().length;
+if(row_count == 0) {
+    $(".more_question").click();
+}

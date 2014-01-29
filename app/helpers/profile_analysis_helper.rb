@@ -1,0 +1,2 @@
+module ProfileAnalysisHelper
+end

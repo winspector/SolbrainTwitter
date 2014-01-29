@@ -1,0 +1,37 @@
+// Place all the styles related to the tweet_data_acquire controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.tweet_data_acquire {
+  .clear-right {
+      clear: right;
+  }
+  .input-form {
+    width: 450px;
+    margin-bottom: 5px;
+    input {
+      float: right;
+      position: relative;
+      margin-bottom: 5px;
+      left: 50px;
+    }
+
+    input[type='checkbox']{
+      margin-right: 5px;
+      float: none;
+      left: 0px;
+    }
+  }
+  .display-inline{
+    display: inline;
+  }
+
+  table {
+    td {
+      img {
+        max-width: none;
+        width: 50px;
+        height: auto;
+      }
+    }
+  }
+}
