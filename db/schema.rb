@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140128085259) do
+ActiveRecord::Schema.define(:version => 20140130101745) do
 
   create_table "acquire_origins", :force => true do |t|
     t.string   "account_uid"
@@ -37,6 +37,21 @@ ActiveRecord::Schema.define(:version => 20140128085259) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  create_table "direct_messages", :force => true do |t|
+    t.string   "my_uid"
+    t.string   "message_id"
+    t.string   "message_text"
+    t.datetime "send_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "sender_uid"
+    t.string   "recipient_uid"
+  end
+
+  add_index "direct_messages", ["my_uid", "message_id"], :name => "index_direct_messages_on_my_uid_and_message_id", :unique => true
+  add_index "direct_messages", ["my_uid"], :name => "index_direct_messages_on_my_uid"
+  add_index "direct_messages", ["my_uid"], :name => "index_direct_messages_on_my_uid_and_target_uid"
 
   create_table "followers", :force => true do |t|
     t.string   "my_uid"

@@ -27,6 +27,12 @@ class FirstBatchExecution < BatchExecution
       puts_result_logs(MentionedTweetData.acquire_mentioned_tweets(target_user))
     }
 
+    # ダイレクトメッセージデータ取得
+    t_message = Thread.start {
+      puts_result_logs(SendDirectMessage.acquire_all_send_message(target_user))
+      puts_result_logs(ReceiveDirectMessage.acquire_all_send_message(target_user))
+    }
+
     t_profile.join
     t_conn.join
     t_tweet.join

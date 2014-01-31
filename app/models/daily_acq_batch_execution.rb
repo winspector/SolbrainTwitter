@@ -10,7 +10,7 @@ class DailyAcqBatchExecution < BatchExecution
         next
       end
 
-      # TODO リトライデータに対して取得（リトライは複数くるかもしれん）
+      # TODO リトライ対応
       retry_controls = TwitterAcquireControl.find_all_by_my_uid_and_acquire_type(target_user.uid, 'all_tweet')
       retry_controls.each do |retry_control|
         result_retry = nil
@@ -18,6 +18,12 @@ class DailyAcqBatchExecution < BatchExecution
           break
         end
       end
+    end
+  end
+
+  def acquire_mention
+    acquire_common do |target_user|
+      # TODO 実装
     end
   end
 
@@ -30,6 +36,36 @@ class DailyAcqBatchExecution < BatchExecution
 
   def update_connection
     acquire_common do |target_user|
+      UpdateTwitterConnection.update_connection(target_user)
+    end
+  end
+
+  def acquire_message
+    acquire_common do |target_user|
+      result_recently = RecentlyUserTweetData.acquire_user_tweets(target_user)
+      result_recently_send = RecentlySendDirectMessage.acquire_recently_send_message(target_user)
+      result_recently_receive = RecentlyReceiveDirectMessage.acquire_recently_receive_message(target_user)
+
+      if result_recently_send[:is_api_rate_limit] || result_recently_send[:exist_error] ||
+          result_recently_receive[:is_api_rate_limit] || result_recently_receive[:exist_error]
+        next
+      end
+
+      retry_send_controls = TwitterAcquireControl.find_all_by_my_uid_and_acquire_type(target_user.uid, 'all_send_message')
+      retry_send_controls.each do |retry_control|
+        result_retry = SendDirectMessage.acquire_all_send_message(target_user,retry_control)
+        if result_retry[:is_api_rate_limit] || result_recently[:exist_error]
+          break
+        end
+      end
+
+      retry_receive_controls = TwitterAcquireControl.find_all_by_my_uid_and_acquire_type(target_user.uid, 'all_receive_message')
+      retry_receive_controls.each do |retry_control|
+        result_retry = ReceiveDirectMessage.acquire_all_receive_message(target_user,retry_control)
+        if result_retry[:is_api_rate_limit] || result_recently[:exist_error]
+          break
+        end
+      end
     end
   end
 

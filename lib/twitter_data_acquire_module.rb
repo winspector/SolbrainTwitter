@@ -34,13 +34,13 @@ module TwitterDataAcquireModule
     # データ登録
     result_persist = create_or_update_with_api_result(my_uid, call_api_result, client)
     if result_persist[:is_api_rate_limit]
-      result[:message] = 'レートリミットにぶつかったようです'
-      result[:status] = 'warning'
+      result_persist[:message] = 'レートリミットにぶつかったようです'
+      result_persist[:status] = 'warning'
     elsif result_persist[:exist_exception]
-      result[:message] = 'なにか不具合があったようです'
-      result[:status] = 'error'
+      result_persist[:message] = 'なにか不具合があったようです'
+      result_persist[:status] = 'error'
     end
-    result
+    result_persist
   end
 
 
