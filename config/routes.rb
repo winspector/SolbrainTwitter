@@ -23,6 +23,9 @@ SolbrainTwitter::Application.routes.draw do
 
   get "dashboard/index"
 
+  get "acquire_origin/index"
+  post "acquire_origin/acquire_origin_user"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

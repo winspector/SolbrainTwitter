@@ -14,7 +14,7 @@ class TweetDataAcquireController < ApplicationController
     # 選択されたアカウントを起点ターゲットに追加する
     if !AcquireOrigin.exists?(account_uid:params['origin']['account_uid'])
       target_user = get_user_info(current_user.access_token, current_user.secret_token,params['origin']['screen_name'])
-      @origin = AcquireOrigin.create_with_user_data(target_user)
+      @origin = AcquireOrigin.create_or_update_with_user_data(target_user)
     else
       @origin = AcquireOrigin.find_by_account_uid(params['origin']['account_uid'])
     end

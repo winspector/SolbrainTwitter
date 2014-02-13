@@ -1,1 +1,19 @@
 <h2>起点ユーザ収集画面</h2>
+起点ユーザ
+<%= form_tag("/acquire_origin/acquire_origin_user", method: 'post') do %>
+    <div class="input-form">
+      <label class="display-inline"></label><%= text_field('search', :acquire_origin_searchword) %></div>
+    <div class="submit-form"><%= button_tag '起点ユーザ検索', {class: 'btn btn-primary'} %></div>
+<% end %>
+<br/>
+起点ユーザテーブルのリスト表示
+<table class="table">
+  <tr>
+    <th>アカウントID</th>
+    <th>名前</th>
+    <th>表示名</th>
+    <th>概要</th>
+    <th>場所</th>
+  </tr>
+  <%= render :partial => 'acquire_origin', :collection => @acquire_origins %>
+</table>
