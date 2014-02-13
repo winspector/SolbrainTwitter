@@ -32,4 +32,9 @@ class User < ActiveRecord::Base
   def self.create_unique_email
     User.create_unique_string + "@example.com"
   end
+
+  # uidからユーザデータを取得
+  def self.get_user_data_by_uid(uid)
+    User.find_by_uid(uid)
+  end
 end

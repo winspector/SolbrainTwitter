@@ -4,4 +4,14 @@
   <td><%= acquire_origin.screen_name %></td>
   <td><%= acquire_origin.description %></td>
   <td><%= acquire_origin.location %></td>
+  <td>
+    <div class="submit-form">
+      <%= button_to '取得',
+                    {:controller => "user_tweet_data",
+                    :action => 'show_tweet_of_acquire_origin',
+                    :screen_name => acquire_origin.screen_name} ,
+                    :class => 'btn btn-primary btn-user-tweet-data'
+      %>
+    </div>
+  </td>
 </tr>

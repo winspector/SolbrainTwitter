@@ -2,9 +2,14 @@
 class AcquireOrigin < ActiveRecord::Base
   attr_accessible :account_uid, :description, :location, :name, :screen_name
 
-  # Twitter user ID または、screen nameから、与えられたユーザの情報を取得し起点テーブルに挿入する
+  RETURN_CODE_CREATE = 0
+  RETURN_CODE_UPDATE = 1
+  RETURN_CODE_NOTFOUND = 2
+  # screen nameから、与えられたユーザの情報を取得し起点テーブルに挿入する
   def self.get_user_data(target_user, search_key)
-    puts "#{search_key}"
+    puts "search_key:#{search_key}"
+    result = RETURN_CODE_NOTFOUND
+
     # clientオブジェクトを作成する
     client = Twitter::REST::Client.new do |config|
       config.consumer_key = Rails.configuration.twitter_consumer_key
@@ -18,9 +23,10 @@ class AcquireOrigin < ActiveRecord::Base
       puts 'imasu'
       acquire_user = client.user(search_key)
 
-      create_or_update_with_user_data(acquire_user)
+      result = create_or_update_with_user_data(acquire_user)
     else
       puts 'imasen'
+      result = RETURN_CODE_NOTFOUND
     end
   end
 
@@ -43,12 +49,12 @@ class AcquireOrigin < ActiveRecord::Base
 
       # 起点ユーザテーブルの起点ユーザを更新
       update_user.update_attributes(acquire_user)
+      return RETURN_CODE_UPDATE
     else
       # 起点ユーザテーブルに起点ユーザを登録
       AcquireOrigin.create(acquire_user)
+      return RETURN_CODE_CREATE
     end
-
-    return AcquireOrigin.find_by_account_uid(acquire_user[:account_uid])
   end
 
   # 起点ユーザテーブルにユーザが存在するか確認する
@@ -63,6 +69,10 @@ class AcquireOrigin < ActiveRecord::Base
 
   def self.find_all_order_id_asc
     AcquireOrigin.order('id ASC')
+  end
+
+  def self.get_acquire_origin_by_screen_name(screen_name)
+    AcquireOrigin.find_by_screen_name(screen_name)
   end
 
 end

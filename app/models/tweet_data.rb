@@ -57,4 +57,8 @@ class TweetData < ActiveRecord::Base
   def self.max_mentioned_tweet_id_by_user(my_uid)
     TweetData.maximum(:tweet_id, conditions: {my_uid: my_uid, tweet_type: 'mentioned'})
   end
+
+  def self.get_all_tweet_data_count_by_my_uid_and_tweet_account_uid(my_uid, tweet_account_uid)
+    TweetData.where('my_uid = ? AND tweet_account_uid = ?', my_uid, tweet_account_uid).order('id ASC').count
+  end
 end

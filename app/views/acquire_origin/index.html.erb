@@ -1,5 +1,5 @@
 <h2>起点ユーザ収集画面</h2>
-起点ユーザ
+表示名（screen_name）入力
 <%= form_tag("/acquire_origin/acquire_origin_user", method: 'post') do %>
     <div class="input-form">
       <label class="display-inline"></label><%= text_field('search', :acquire_origin_searchword) %></div>
@@ -14,6 +14,7 @@
     <th>表示名</th>
     <th>概要</th>
     <th>場所</th>
+    <th>ツイート取得</th>
   </tr>
   <%= render :partial => 'acquire_origin', :collection => @acquire_origins %>
 </table>
