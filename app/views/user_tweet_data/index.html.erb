@@ -1,0 +1,26 @@
+<h2>起点ユーザ詳細画面</h2>
+<table class="table">
+  <tr>
+    <th>起点ユーザ表示名</th>
+    <th>ツイート数</th>
+  </tr>
+  <tr>
+    <td><%= @search_screen_name %></td>
+    <td><%= @tweet_data_count %></td>
+  </tr>
+</table>
+
+<h2>起点ユーザの友人リスト</h2>
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>表示名</th>
+    <th>名前</th>
+    <th>フォローフラグ</th>
+    <th>フォロワーフラグ</th>
+    <th>フォロワー数</th>
+    <th>ツイート数</th>
+  </tr>
+  <%= render :partial => 'friend_of_acquire_user', :collection => @friend_of_acquire_users %>
+</table>
+

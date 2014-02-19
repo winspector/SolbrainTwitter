@@ -26,7 +26,9 @@ SolbrainTwitter::Application.routes.draw do
   get "acquire_origin/index"
   post "acquire_origin/acquire_origin_user"
 
+  get 'user_tweet_data/index'
   post 'user_tweet_data/show_tweet_of_acquire_origin'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
