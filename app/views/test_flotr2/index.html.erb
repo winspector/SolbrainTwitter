@@ -1,0 +1,24 @@
+<h2>flotr2テスト画面</h2>
+<table>
+  <tr>
+    <td>uid: <%= @uid %></td>
+  </tr>
+  <tr>
+    <td>screen_name: <%= @screen_name %></td>
+  </tr>
+  <tr>
+    <td colspan="2"><div class="render-2line" id="test-flotr2-base-graph"></div></td>
+  </tr>
+  <tr>
+    <th>friend</th>
+    <th>follower</th>
+  </tr>
+  <tr>
+    <td><div class="render" id="test-flotr2-base-graph-friend"></div></td>
+    <td><div class="render" id="test-flotr2-base-graph-follower"></div></td>
+  </tr>
+</table>
+<div class="hidden">
+  <div id="test-flotr2-base-graph-data1"><%= @friend_count_array %></div>
+  <div id="test-flotr2-base-graph-data2"><%= @followers_count_array %></div>
+</div>

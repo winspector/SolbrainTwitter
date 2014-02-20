@@ -105,20 +105,30 @@ class UserTweetData < TweetData
     client = get_client(target_user)
 
     # 起点ユーザの対象フレンドを走査する
+    count = 0
+    account = []
     target_acquire_friends.each do |target_acquire_friend|
+      puts "count:#{count}"
+      if count > 5
+        break
+      end
+
       # ツイートデータを取得する
       tweets = []
       begin
         puts "target_acquire_friend[:screen_name]:#{target_acquire_friend[:screen_name]}"
         tweets = client.user_timeline(target_acquire_friend[:screen_name], :count => GET_COUNT)
+
+        # ツイートデータを追加または更新をする
+        create_or_update_tweet_data(AcquireOrigin.get_acquire_origin_by_screen_name(screen_name).account_uid, tweets)
+        account.push(target_acquire_friend)
+        count += 1
       rescue Twitter::Error::Unauthorized
-        puts '非公開ユーザ：target_acquire_friend[:screen_name]'
+        puts "非公開ユーザ：#{target_acquire_friend[:screen_name]}"
       end
-
-      # ツイートデータを追加または更新をする
-      create_or_update_tweet_data(AcquireOrigin.get_acquire_origin_by_screen_name(screen_name).account_uid, tweets)
-
     end
+    puts "acount:#{account}"
+    return account
 
   end
 

@@ -1,0 +1,64 @@
+.hidden {
+  display: none;
+}
+.float-right {
+  float: right;
+}
+.render {
+  display: inline-block;
+  width: 360px;
+  height: 340px;
+  margin: 12px auto 18px auto;
+  .flotr-legend-label{
+    vertical-align: middle;
+  }
+}
+
+.render-2line {
+  display: inline-block;
+  width: 720px;
+  height: 340px;
+  margin: 12px auto 18px auto;
+  .flotr-legend-label{
+    vertical-align: middle;
+  }
+}
+
+.render-radar {
+  display: inline-block;
+  vertical-align: center;
+  width: 240px;
+  height: 170px;
+  margin: 12px auto 18px auto;
+  .flotr-legend-label{
+    vertical-align: middle;
+  }
+}
+.graphs{
+  position: relative;
+  .graph-title {
+    font-size:16px;
+    text-align:center;
+    margin:10px 0 0;
+  }
+
+  .demograph{
+    width: 95%;
+    height: 170px;
+    display: inline;
+    position: absolute;
+    background-color:#FFFFFF;
+    padding:30% 2% 20% 2% ;
+    left: 0%;
+    top:15%;
+    font-size:120%;
+
+    filter:alpha(opacity=50);
+    -moz-opacity:0.50;
+    -khtml-opacity: 0.50;
+    opacity:0.50;
+    p {
+      margin-left: 10%;
+    }
+  }
+}

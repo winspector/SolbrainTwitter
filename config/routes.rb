@@ -29,6 +29,8 @@ SolbrainTwitter::Application.routes.draw do
   get 'user_tweet_data/index'
   post 'user_tweet_data/show_tweet_of_acquire_origin'
 
+  get 'test_flotr2/index'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

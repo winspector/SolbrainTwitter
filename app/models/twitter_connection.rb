@@ -223,5 +223,16 @@ class TwitterConnection < ActiveRecord::Base
     TwitterConnection.where('is_follower = "t" AND is_friend = "t" AND my_uid = ? AND followers_count < ?', acquire_uid, threshold_follower_count).order('followers_count DESC').limit(limit_num)
   end
 
+  def self.get_friend_of_acquire_users_no_limit(acquire_uid, threshold_follower_count)
+    TwitterConnection.where('is_follower = "t" AND is_friend = "t" AND my_uid = ? AND followers_count < ?', acquire_uid, threshold_follower_count).order('followers_count DESC')
+  end
+
+  def self.get_friends_count_of_acquire_uid(acquire_uid)
+    TwitterConnection.select('friends_count, followers_count').where('my_uid = ?',acquire_uid).order('id')
+  end
+
+  def self.get_friend_by_id(id)
+    TwitterConnection.where('id = ?', id)
+  end
 
 end
