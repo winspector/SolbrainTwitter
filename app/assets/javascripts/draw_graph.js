@@ -253,11 +253,13 @@ function test_flotr2_basic_2line(container, post_growth1, post_growth2) {
     }
 
     // Draw Graph
-    graph = Flotr.draw(container, [ {data: d1,label: 'friend_count',lines: {show: true}, points:{show:true}},{data: d2,label: 'follower_count',lines: {show: true}, points:{show:true}}  ], {
+    graph = Flotr.draw(container, [ {data: d1,label: 'friend_count',lines: {show: true}, points:{show:true}},
+        {data: d2,label: 'follower_count',lines: {show: true}, points:{show:true}}  ], {
         xaxis: {
 //            ticks: x
         },
         yaxis: {
+//            max: 39581320
 //            scaling: 'logarithmic',
 //            base: 10
 //            max: 100000
@@ -273,7 +275,30 @@ function test_flotr2_basic_1line(container, post_growth1) {
 
     var
         d1 = [], // First data series
-        d2 = [],
+        x = [],
+        i, graph;
+
+    for (i = 0; i < post_growth1.length; i++) {
+        d1.push([i, post_growth1[i]]);
+    }
+
+    // Draw Graph
+    graph = Flotr.draw(container, [ {data: d1,lines: {show: true}, points:{show:true}}  ], {
+        xaxis: {
+        },
+        yaxis: {
+        },
+        grid: {
+            minorVerticalLines: true
+        }
+    });
+}
+
+// test_flotr2用、1つ折れ線グラフ
+function test_flotr2_hist(container, post_growth1) {
+
+    var
+        d1 = [], // First data series
         x = [],
         i, graph;
 
